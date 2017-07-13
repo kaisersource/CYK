@@ -12,7 +12,7 @@ import java.util.Set;
  */
 public class Cyk
 {
-   // Definizione costanti
+   // Definizione delle costanti
    public static final int GRAMMAR_FILE = 0;
    public static final int FILE_ERROR = 1;
    public static final int LAST_ARG = 1;
@@ -20,18 +20,17 @@ public class Cyk
    public static final int TOTAL_ARGS = 2;
 
    /* La tabella per l'algoritmo CYK*/
-   private static ArrayList<String>[][] table;
+   private static ArrayList<String>[][] tab;
 
    /**
-   * Le variabili sono nella forma (0 U 1)+ e sono memorizzate nella hashmap.
-	 * Hashmap perché hanno accesso diretto e me ne sbatto dell'ordine.
+   * Le variabili sono nella forma (0 U 1)+ e sono memorizzate nella hashmap.  * Hashmap perché hanno accesso diretto e me ne sbatto dell'ordine.
    * La forma nelle hashmap è del tipo { (0 U 1)+, (0 U 1)+ }
-   */
+   **/
    private HashMap<String, String[]> var;
 
    /** 
     * I terminali sono nella forma  (a U b)
-    */
+    **/
    private HashMap<String, Character> ter;
 
    /* Variabili iniziali */
@@ -39,7 +38,7 @@ public class Cyk
 
    /**
     * Builda un oggetto Cyk e inizializza l'hashmap delle variabili e terminali
-    */
+    **/
    public Cyk()
    {
       var = new HashMap<String, String[]>();
@@ -49,7 +48,7 @@ public class Cyk
    /**
     * Lascio all'oggetto scanner la facoltà di leggere il file della grammatica.
 		* Maneggio tale file in modo da ottenere l'hashmap delle variabili e terminali
-    */
+    **/
    public void processGrammarFile(String file)
    {
       File grammarFile = null;
@@ -91,17 +90,17 @@ public class Cyk
    /**
     * Confronta la stringa col file della grammatica usando il CYK.
     * restituisce true se la string w è accettata dalla grammatica, false altrimenti
-    */
+    **/
    @SuppressWarnings("unchecked")
    public boolean processString(String w)
    {
       int length = w.length();
-      table = new ArrayList[length][]; // povero heap :'(
+      tab = new ArrayList[length][]; // povero heap :'(
       for (int i = 0; i < length; ++i)
       {
-         table[i] = new ArrayList[length];
+         tab[i] = new ArrayList[length];
          for (int j = 0; j < length; ++j)
-            table[i][j] = new ArrayList < String > ();
+            tab[i][j] = new ArrayList < String > ();
       }
       for (int i = 0; i < length; ++i)
       {
@@ -109,7 +108,7 @@ public class Cyk
          for (String key : keys)
          {
             if (ter.get(key).charValue() == w.charAt(i))
-               table[i][i].add(key);
+               tab[i][i].add(key);
          }
       }
       for (int l = 2; l <= length; ++l)
@@ -123,13 +122,13 @@ public class Cyk
                for (String key : keys)
                {
                   String[] values = var.get(key);
-                  if (table[i][k].contains((values[0])) && table[k + 1][j].contains(values[1]))
-                     table[i][j].add(key);
+                  if (tab[i][k].contains((values[0])) && tab[k + 1][j].contains(values[1]))
+                     tab[i][j].add(key);
                }
             }
          }
       }
-      if (table[0][length - 1].contains(startVar)) // startato da 0
+      if (tab[0][length - 1].contains(startVar)) // startato da 0
          return true;
       return false;
    }
