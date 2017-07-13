@@ -1,7 +1,7 @@
 # CYK
 Implementazione in Java dell'algoritmo Cocke-Kasami-Younger
 
-##Come avviarlo
+## Come avviarlo
 
 
-###Da terminale : java Cyk grammar.txt stringadaparsare
+### Da terminale : java __Cyk__ __grammar.txt__ __stringadaparsare__
