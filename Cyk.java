@@ -12,14 +12,16 @@ import java.util.Set;
  */
 public class Cyk
 {
-   // Definizione delle costanti
-   public static final int GRAMMAR_FILE = 0;
-   public static final int FILE_ERROR = 1;
-   public static final int LAST_ARG = 1;
-   public static final int PARSE_ERROR = 2;
-   public static final int TOTAL_ARGS = 2;
-
-   /* La tabella per l'algoritmo CYK*/
+  /** 
+	*Dichiarazione e definizione delle costanti
+	**/
+  public static final int GRAMMAR_FILE=0;
+	public static final int FILE_ERROR=1;
+	public static final int LAST_ARG=1;
+	public static final int PARSE_ERROR=2;
+	public static final int TOTAL_ARGS=2;
+	 
+	 /* Tabella per l'algoritmo */
    private static ArrayList<String>[][] tab;
 
    /**
